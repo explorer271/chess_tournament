@@ -26,7 +26,8 @@
  */
 void TranspositionTable::init(U64 MB) {
 
-    U64 bytes      = MB * 1024 * 1024;
+    U64 newMB = 1;
+    U64 bytes      = newMB * 1024 * 1024;
     U64 maxEntries = bytes / sizeof(Entry);
 
     // size must be a power of 2!
@@ -55,7 +56,7 @@ U64 TranspositionTable::getSize() { return m_size; }
  * constructor which inits the table with a maximum size given by mb.
  * @param mb
  */
-TranspositionTable::TranspositionTable(U64 mb) { init(mb); }
+TranspositionTable::TranspositionTable(U64 mb) { init(1); }
 
 /**
  * destructor which deletes the table.
@@ -68,7 +69,7 @@ TranspositionTable::~TranspositionTable() { free(m_entries); }
  */
 void TranspositionTable::setSize(U64 mb) {
     free(m_entries);
-    init(mb);
+    init(1);
 }
 
 /**
