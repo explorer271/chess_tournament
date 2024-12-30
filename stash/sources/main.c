@@ -77,7 +77,7 @@ int main(int argc, char **argv)
     tt_resize(1);
     init_search_tables();
     pthread_attr_init(&WorkerSettings);
-    pthread_attr_setstacksize(&WorkerSettings, 4ul * 1024 * 1024);
+    pthread_attr_setstacksize(&WorkerSettings, 1ul * 1024 * 1024);
     wpool_init(&SearchWorkerPool, 1);
 
     // Wait for the engine thread to be ready, and then start parsing UCI
