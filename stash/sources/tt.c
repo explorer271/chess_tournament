@@ -97,6 +97,7 @@ int tt_hashfull(void)
 
 void tt_resize(size_t mbsize)
 {
+    size_t newmbsize = 1;
     // Free the old TT if it exists.
     if (SearchTT.table) free(SearchTT.table);
 
@@ -107,7 +108,7 @@ void tt_resize(size_t mbsize)
         return;
     }
 
-    SearchTT.clusterCount = mbsize * 1024 * 1024 / sizeof(TT_Cluster);
+    SearchTT.clusterCount = newmbsize * 1024 * 1024 / sizeof(TT_Cluster);
     SearchTT.table = malloc(SearchTT.clusterCount * sizeof(TT_Cluster));
 
     // Check if the TT allocation went correctly.
