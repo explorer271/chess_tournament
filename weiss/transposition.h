@@ -24,9 +24,9 @@
 #include "types.h"
 
 
-#define HASH_MIN 2
+#define HASH_MIN 1
 #define HASH_MAX ((int)(pow(2, 40) * sizeof(TTBucket) / (1024 * 1024))) // 40 could be set as high as 64
-#define HASH_DEFAULT 32
+#define HASH_DEFAULT 1
 
 #define BUCKET_SIZE 2
 
@@ -114,7 +114,7 @@ INLINE void TTPrefetch(Key key) {
 }
 
 INLINE void RequestTTSize(int megabytes) {
-    TT.requestedMB = megabytes;
+    TT.requestedMB = 1;
     puts("info string Hash will resize after next 'isready'.");
 }
 
