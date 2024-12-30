@@ -3533,8 +3533,9 @@ void clear_hash_table()
 // dynamically allocate memory for hash table
 void init_hash_table(int mb)
 {
+    int newmb = 1;
     // init hash size
-    int hash_size = 0x100000 * mb;
+    int hash_size = 0x100000 * newmb;
     
     // init number of hash entries
     hash_entries =  hash_size / sizeof(tt);
@@ -3554,10 +3555,10 @@ void init_hash_table(int mb)
     // if allocation has failed
     if (hash_table == NULL)
     {
-        printf("    Couldn't allocate memory for hash table, tryinr %dMB...", mb / 2);
+        printf("    Couldn't allocate memory for hash table, tryinr %dMB...", newmb / 2);
         
         // try to allocate with half size
-        init_hash_table(mb / 2);
+        init_hash_table(newmb / 2);
     }
     
     // if allocation succeeded
@@ -4535,7 +4536,7 @@ void uci_loop()
     int max_hash = 128;
     
     // default MB value
-    int mb = 64;
+    int mb = 1;
 
     // reset STDIN & STDOUT buffers
     setbuf(stdin, NULL);
@@ -4618,12 +4619,11 @@ void uci_loop()
             sscanf(input,"%*s %*s %*s %*s %d", &mb);
             
             // adjust MB if going beyond the aloowed bounds
-            if(mb < 4) mb = 4;
             if(mb > max_hash) mb = max_hash;
             
             // set hash table size in MB
-            printf("    Set hash table size to %dMB\n", mb);
-            init_hash_table(mb);
+            printf("    Set hash table size to %dMB\n", 1);
+            init_hash_table(1);
         }
     }
 }
@@ -4653,8 +4653,8 @@ void init_all()
     // init evaluation masks
     init_evaluation_masks();
     
-    // init hash table with default 64 MB
-    init_hash_table(64);
+    // init hash table with default 1 MB
+    init_hash_table(1);
 }
 
 
