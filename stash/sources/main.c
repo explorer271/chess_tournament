@@ -38,7 +38,7 @@ uint64_t Seed = 1048592ul;
 
 OptionFields UciOptionFields = {
     .threads = 1,
-    .hash = 16,
+    .hash = 1,
     .moveOverhead = 30,
     .multiPv = 1,
     .chess960 = false,
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 #else
 
     // Initialize the search-related data along with the worker pool.
-    tt_resize(16);
+    tt_resize(1);
     init_search_tables();
     pthread_attr_init(&WorkerSettings);
     pthread_attr_setstacksize(&WorkerSettings, 4ul * 1024 * 1024);
