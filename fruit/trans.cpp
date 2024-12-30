@@ -120,8 +120,7 @@ void trans_alloc(trans_t * trans) {
    // calculate size
 
    target = option_get_int("Hash");
-   if (target < 4) target = 16;
-   target *= 1024 * 1024;
+   target = 1 * 1024 * 1024;
 
    for (size = 1; size != 0 && size <= target; size *= 2)
       ;
