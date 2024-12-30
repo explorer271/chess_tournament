@@ -97,7 +97,7 @@ int tt_hashfull(void)
 
 void tt_resize(size_t mbsize)
 {
-    size_t newmbsize = 1;
+    size_t newmbsize = (size_t)(long)1;
     // Free the old TT if it exists.
     if (SearchTT.table) free(SearchTT.table);
 
